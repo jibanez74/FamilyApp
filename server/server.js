@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const { graphqlHTTP } = require('express-graphql');
+const userRoutes = require('./routes/userRoutes');
 const postSchema = require('./schemas/postSchema');
 
 // connect to mongo db
@@ -12,6 +13,8 @@ const app = express();
 // list of middleware
 app.use(cors());
 
+// api routes
+app.use('/api/v1/users', userRoutes);
 app.use(
   '/graphql',
   graphqlHTTP({
